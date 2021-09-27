@@ -1,8 +1,9 @@
 const fs = require("fs/promises");
+const { constants } = require("fs");
 
 const filePath = "./BIN1/utils/log_analyzer/access.log";
 
-fs.access(filePath, fs.constants.R_OK)
+fs.access(filePath, constants.R_OK)
   .then(() => fs.readFile(filePath))
   .then((data) => {
     const logs = data.toString();

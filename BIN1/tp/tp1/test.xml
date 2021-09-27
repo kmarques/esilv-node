@@ -1,0 +1,69 @@
+<array>
+  <data id="0" name="1" address="1" dob="1" email="1"/>
+  <data id="0">
+    <id>0</id>
+    <name>1</name>
+    <address>1</address>
+    <dob>1</dob>
+    <email>1</email>
+  </data>
+  <data>
+    <id>0</id>
+    <name>1</name>
+    <address>1</address>
+    <dob>1</dob>
+    <email>1</email>
+  </data>
+  <data id="1">
+    <id>1</id>
+    <name>1</name>
+    <address>1</address>
+    <dob>1</dob>
+    <email>1</email>
+  </data>
+  <data id="2">
+    <id>2</id>
+    <name>1</name>
+    <address>1</address>
+    <dob>1</dob>
+    <email>1</email>
+  </data>
+  <data id="3">
+    <id>3</id>
+    <name>1</name>
+    <address>1</address>
+    <dob>1</dob>
+    <email>1</email>
+  </data>
+</array>
+
+[
+{
+"id": 1,
+"nom": "Foo",
+"address": "bar1",
+"dob": "2020-01-12",
+"email": "foo@bar1.com"
+},
+{
+"id": 1,
+"nom": "Foo",
+"address": "bar3",
+"dob": "2020-01-12",
+"email": "foo@bar3.com"
+},
+{
+"id": 1,
+"nom": "Foo6",
+"address": "bar1",
+"dob": "2020-01-12",
+"email": "foo6@bar1.com"
+},
+{
+"id": 1,
+"nom": "Foodsf",
+"address": "bar90",
+"dob": "2020-01-12",
+"email": "foodsf@bar90.com"
+}
+]
