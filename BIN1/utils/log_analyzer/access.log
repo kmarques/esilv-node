@@ -1,0 +1,4 @@
+2021-09-14 13:40 GET 200 /index.php
+2021-09-14 13:41 POST 201 /create.php
+2021-09-14 13:42 PUT 200 /update.php
+2021-09-14 13:43 DELETE 204 /delete.php
