@@ -1,6 +1,6 @@
 const fs = require("fs");
-console.log(process.cwd());
-const filePath = "./utils/log_analyser/access.log";
+
+const filePath = "./BIN2/utils/log_analyser/access.log";
 
 fs.access(filePath, fs.constants.R_OK, function (err) {
   if (err) {
