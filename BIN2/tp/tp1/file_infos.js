@@ -10,12 +10,12 @@ const fs = require("fs/promises");
 const { constants } = require("fs");
 const path = require("path");
 
-const [filePath = "", extension = ""] = process.argv.slice(2);
+const [filePath = "", extensionCLI = ""] = process.argv.slice(2);
 
 fs.access(filePath, constants.R_OK)
   .then(() => fs.readFile(filePath))
   .then((data) => {
-    //const extension = "." + filePath.split(".").pop();
+    const extension = "." + (extensionCLI || filePath.split(".").pop());
     const extensionF = extension
       ? "." + extension.toLowerCase()
       : path.extname(filePath);
