@@ -9,13 +9,13 @@ const fs = require("fs/promises");
 const path = require("path");
 const { constants } = require("fs");
 
-const filePath = "./test.json";
+const [filePath, extensionCLI = ""] = process.argv.slice(2);
 
 fs.access(filePath, constants.R_OK)
   .then(() => fs.readFile(filePath))
   .then((data) => {
     //const extension = path.extname(filePath);
-    const extension = filePath.split(".").pop();
+    const extension = extensionCLI.toLowerCase() || filePath.split(".").pop();
     if (extension === "csv") {
       return parseCSV(data);
     }
