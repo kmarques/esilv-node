@@ -16,4 +16,21 @@
  *
  * Rendu sur Devinci Online
  */
-const { JSDOM } = require("jsdom");
+const Scrapper = require("./Scrapper");
+
+new Scrapper({
+  url: "https://fr.wikipedia.org/wiki/Liste_des_codes_HTTP",
+  processData: (document) => {
+    const trs = document.querySelectorAll("table tr:not(:first-child)");
+
+    return Array.from(trs).reduce((acc, item) => {
+      const key = item.querySelector("th").textContent.trim();
+      const value = item.querySelector("td:first-of-type").textContent.trim();
+      acc[key] = value;
+
+      return acc;
+    }, {});
+  },
+})
+  .prepare()
+  .start();

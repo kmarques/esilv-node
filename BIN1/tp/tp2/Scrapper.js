@@ -36,6 +36,8 @@ class Scrapper {
 
         console.log(data);
       });
+
+      res.on("error", (err) => console.error(err));
     });
 
     return this;
