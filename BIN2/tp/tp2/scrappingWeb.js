@@ -18,4 +18,20 @@
  *  en sujet: "[ESILV][NODE][BIN2]TP2 Nom prénom"
  *  en pj: scrapper.js et scrappingWeb.js
  */
-const { JSDOM } = require("jsdom");
+const Scrapper = require("./scrapper");
+
+new Scrapper({
+  url: "https://fr.wikipedia.org/wiki/Liste_des_codes_HTTP",
+  processData: (data) =>
+    Array.from(data.querySelectorAll("table tr:not(:first-child)")).reduce(
+      (acc, item) => {
+        const key = item.querySelector("th").innerText.trim();
+        const value = item.querySelector("td:first-of-type").innerText.trim();
+        acc[key] = value;
+        return acc;
+      },
+      {}
+    ),
+})
+  .prepare()
+  .start();
