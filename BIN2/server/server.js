@@ -8,6 +8,9 @@ const app = express();
  * /users : Operations de collection sur des Users
  * /users/:id : Operations d'item User
  *
+ * /vehicules : Operations de collection sur des Vehicules
+ * /vehicules/:id : Operations d'item Vehicule
+ *
  * GET récupère un ou plusieurs items
  *  - /users
  *      200 : OK
