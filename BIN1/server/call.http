@@ -1,6 +1,9 @@
 GET http://localhost:3000/users
 
 ###
+GET http://localhost:3000/posts
+
+###
 GET http://localhost:3000/users/2
 
 ###
