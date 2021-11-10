@@ -1,87 +1,48 @@
 const express = require("express");
-
+const User = require("../models/User");
 const router = express.Router();
 
 router.get("", (req, res) => {
-  res.json([
-    {
-      id: 1,
-      name: "John",
-      age: 30,
-    },
-    {
-      id: 2,
-      name: "Jane",
-      age: 20,
-    },
-  ]);
+  const criteria = req.query;
+  User.findAll({
+    where: criteria,
+  }).then((users) => res.json(users));
+});
+
+router.post("", (req, res) => {
+  User.create(req.body).then((user) => res.status(201).json(user));
 });
 
 router.get("/:id", (req, res) => {
   const id = parseInt(req.params.id);
-  if (id === 1) {
-    res.json({
-      id: 1,
-      name: "John",
-      age: 30,
-    });
-  } else {
-    res.sendStatus(404);
-  }
+  User.findByPk(id).then((user) => {
+    if (!user) res.sendStatus(404);
+    else res.json(user);
+  });
 });
 
 router.delete("/:id", (req, res) => {
   const id = parseInt(req.params.id);
-  if (id === 1) {
-    res.sendStatus(204);
-  } else {
-    res.sendStatus(404);
-  }
-});
-
-router.post("", (req, res) => {
-  const user = req.body;
-  if (user.name && user.age) {
-    res.status(201).json({
-      name: user.name,
-      age: user.age,
-      id: new Date().getTime(),
-    });
-  } else {
-    const error = {};
-    if (!user.name) {
-      error.name = "required";
-    }
-    if (!user.age) {
-      error.age = "required";
-    }
-    res.status(400).json(error);
-  }
+  User.destroy({
+    where: {
+      id: id,
+    },
+  }).then((nbDeleted) => {
+    if (!nbDeleted) res.sendStatus(404);
+    else res.sendStatus(204);
+  });
 });
 
 router.put("/:id", (req, res) => {
   const id = parseInt(req.params.id);
-  const user = req.body;
-  if (id === 1) {
-    if (user.name && user.age) {
-      res.json({
-        id: 1,
-        name: user.name,
-        age: user.age,
-      });
-    } else {
-      const error = {};
-      if (!user.name) {
-        error.name = "required";
-      }
-      if (!user.age) {
-        error.age = "required";
-      }
-      res.status(400).json(error);
-    }
-  } else {
-    res.sendStatus(404);
-  }
+  User.update(req.body, {
+    where: {
+      id: id,
+    },
+  }).then(([nbUpdated]) => {
+    if (!nbUpdated) res.sendStatus(404);
+    else User.findByPk(id).then((user) => res.json(user));
+  });
 });
 
 module.exports = router;

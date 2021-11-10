@@ -1,7 +1,9 @@
 const express = require("express");
 const userRouter = require("./routes/user");
 const vehiculeRouter = require("./routes/vehicule");
-
+const User = require("./models/User");
+const connection = require("./lib/db");
+connection.sync();
 const app = express();
 
 /**
