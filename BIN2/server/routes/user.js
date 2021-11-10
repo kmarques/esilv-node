@@ -40,7 +40,6 @@ router.delete("/:id", (req, res) => {
 });
 
 router.post("", (req, res) => {
-  console.log(req);
   const user = req.body;
   if (user.name && user.age) {
     res.status(201).json({

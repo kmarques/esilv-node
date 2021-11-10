@@ -1,26 +1,26 @@
-GET http://localhost:3001/users
+GET http://localhost:3000/users
 
 ###
-GET http://localhost:3001/users/1
+GET http://localhost:3000/users/2
 
 ###
-DELETE http://localhost:3001/users/1
+DELETE http://localhost:3000/users/2
 
 ###
-POST http://localhost:3001/users
+POST http://localhost:3000/users
 Content-Type: application/json
 
 {
-  "name": "John Doe",
-  "email": "test@test.com"
+  "lastname": "Doe",
+  "email": "test3@test.com"
 }
 
 
 ###
-PUT http://localhost:3001/users/1
+PUT http://localhost:3000/users/1
 Content-Type: application/json
 
 {
-  "name": "John Do",
+  "lastname": "Do",
   "email": "test@test.com"
 }
