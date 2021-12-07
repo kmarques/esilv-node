@@ -1,8 +1,10 @@
 const express = require("express");
-const userRouter = require("./routes/user");
 const vehiculeRouter = require("./routes/vehicule");
-const User = require("./models/User");
+const securityRouter = require("./routes/security");
+const userRouter = require("./routes/user");
+const postRouter = require("./routes/post");
 const connection = require("./lib/db");
+const verifyJWT = require("./middlewares/verifyJWT");
 connection.sync();
 const app = express();
 
@@ -38,7 +40,10 @@ const app = express();
  */
 app.use(express.json());
 
+app.use("", securityRouter);
 app.use("/users", userRouter);
+app.use("/posts", postRouter);
+app.use(verifyJWT);
 app.use("/vehicules", vehiculeRouter);
 
 app.listen(3000, () => console.log("Server is listening"));

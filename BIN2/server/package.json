@@ -9,7 +9,9 @@
   "author": "",
   "license": "UNLICENSED",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
     "mariadb": "^2.5.5",
     "mysql2": "^2.3.3-rc.0",
     "sequelize": "^6.9.0"

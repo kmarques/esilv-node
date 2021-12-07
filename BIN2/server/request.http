@@ -1,4 +1,4 @@
-GET http://localhost:3000/users
+GET http://localhost:3000/posts
 
 ###
 GET http://localhost:3000/users/4
@@ -7,12 +7,14 @@ GET http://localhost:3000/users/4
 DELETE http://localhost:3000/users/4
 
 ###
-POST http://localhost:3000/users
+POST http://localhost:3000/posts
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiaWF0IjoxNjM4ODY0OTAwLCJleHAiOjE2NzA0MjI1MDB9.WcsoJvT1f-WdvGqBoCULgiJ-yTtdMTD-A2Q1N4oBuUc
 
 {
-    "firstname": "John",
-    "lastname": "Doe"
+    "title": "John",
+    "content": "Doe",
+    "tags": "tech-market"
 }
 
 ###
@@ -23,3 +25,23 @@ Content-Type: application/json
     "firstname": "John",
     "age": 30
 }
+
+###
+POST http://localhost:3000/users
+Content-Type: application/json
+
+{
+    "email": "Johnny",
+    "password": "Hally"
+}
+
+###
+POST http://localhost:3000/login
+Content-Type: application/json
+
+{
+    "email": "Johnny",
+    "password": "Hally"
+}
+
+# Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiaWF0IjoxNjM4ODY0OTAwLCJleHAiOjE2NzA0MjI1MDB9.WcsoJvT1f-WdvGqBoCULgiJ-yTtdMTD-A2Q1N4oBuUc
