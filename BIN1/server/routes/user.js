@@ -1,4 +1,7 @@
 const { Router } = require("express");
+const bcrypt = require("bcryptjs");
+const { createToken } = require("../lib/jwt");
+const verifyJWT = require("../middlewares/verifyJWT");
 const User = require("../models/User");
 const router = new Router();
 
@@ -25,7 +28,7 @@ router.get("/users/:id", (req, res) => {
   });
 });
 
-router.put("/users/:id", (req, res) => {
+router.put("/users/:id", verifyJWT, (req, res) => {
   const id = req.params.id;
   User.update(req.body, {
     where: { id: id },
@@ -42,6 +45,24 @@ router.delete("/users/:id", (req, res) => {
   }).then((nbDeleted) => {
     if (!nbDeleted) res.sendStatus(404);
     else res.sendStatus(204);
+  });
+});
+
+router.post("/login", (req, res) => {
+  User.findOne({ where: { email: req.body.email } }).then((user) => {
+    if (!user)
+      res.status(400).json({
+        email: "Email not found",
+      });
+    else if (!bcrypt.compareSync(req.body.password, user.password)) {
+      res.status(400).json({
+        password: "Password is incorrect",
+      });
+    } else {
+      res.json({
+        token: createToken(user),
+      });
+    }
   });
 });
 

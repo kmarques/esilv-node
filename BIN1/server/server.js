@@ -3,6 +3,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 const UserRouter = require("./routes/user");
 const PostRouter = require("./routes/post");
+const verifyJWT = require("./middlewares/verifyJWT");
 //const generateRoutes = require("./routes/genericRouter");
 
 /**
@@ -41,6 +42,7 @@ const PostRouter = require("./routes/post");
 
 app.use(express.json());
 app.use(UserRouter);
+app.use(verifyJWT);
 app.use(PostRouter);
 
 //app.use(generateRoutes(User));

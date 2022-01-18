@@ -14,16 +14,32 @@ POST http://localhost:3000/users
 Content-Type: application/json
 
 {
-  "lastname": "Doe",
-  "email": "test3@test.com"
+  "email": "Doesdfhgjh",
+  "password": "test3@test.com"
 }
+###
+POST http://localhost:3000/login
+Content-Type: application/json
+
+{
+  "email": "Doesdfhgjh",
+  "password": "test3@test.com"
+}
+
+### Token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NywiaWF0IjoxNjM4ODc4NzE0LCJleHAiOjE2NzA0MzYzMTR9.5dD0Fwx9VELovIG0kYzgAl5r-vbeK4zgf7_oNBfwoRc
 
 
 ###
 PUT http://localhost:3000/users/1
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NywiaWF0IjoxNjM4ODc4NzE0LCJleHAiOjE2NzA0MzYzMTR9.5dD0Fwx9VELovIG0kYzgAl5r-vbeK4zgf7_oNBfwoRc
 
 {
   "lastname": "Do",
   "email": "test@test.com"
 }
+
+###
+GET http://localhost:3000/posts
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NywiaWF0IjoxNjM4ODc4NzE0LCJleHAiOjE2NzA0MzYzMTR9.5dD0Fwx9VELovIG0kYzgAl5r-vbeK4zgf7_oNBfwoRc
