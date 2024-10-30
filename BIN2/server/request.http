@@ -1,0 +1,19 @@
+GET http://localhost:3000/users
+
+###
+POST http://localhost:3000/users
+content-type: application/json
+
+{
+    "fullName": "Jane Doe",
+    "email": "jane@doe.fr",
+    "password": "123456"
+}
+
+###
+PATCH http://localhost:3000/users/1234567
+content-type: application/json
+
+{
+    "email": "jane@doe.com"
+}
