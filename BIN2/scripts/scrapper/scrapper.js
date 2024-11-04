@@ -2,7 +2,6 @@ const http = require("node:http");
 const fs = require("node:fs");
 const path = require("node:path");
 
-console.log(process.env);
 const url = `http://www.omdbapi.com/?apikey=${process.env.OMDB_APIKEY}&s=gladiator`;
 
 const request = http.request(

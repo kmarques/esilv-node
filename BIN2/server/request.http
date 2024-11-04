@@ -7,13 +7,46 @@ content-type: application/json
 {
     "fullName": "Jane Doe",
     "email": "jane@doe.fr",
-    "password": "123456"
+    "password": "123456azAZ!ç",
+    "birthday": "1990-01-01"
 }
 
 ###
-PATCH http://localhost:3000/users/1234567
+PATCH http://localhost:3000/users/1
 content-type: application/json
 
 {
     "email": "jane@doe.com"
 }
+
+###
+GET http://localhost:3000/users/1234567
+
+###
+DELETE http://localhost:3000/users/1234567
+
+###
+GET http://localhost:3000/animals
+
+###
+POST http://localhost:3000/animals
+content-type: application/json
+
+{
+    "name": "Jane Doe",
+    "race": "Chien"
+}
+
+###
+PATCH http://localhost:3000/animals/1
+content-type: application/json
+
+{
+    "race": "Chat"
+}
+
+###
+GET http://localhost:3000/animals/1
+
+###
+DELETE http://localhost:3000/animals/1

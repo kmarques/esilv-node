@@ -1,0 +1,25 @@
+services:
+  server:
+    image: node:alpine
+    working_dir: /app
+    volumes:
+      - .:/app
+    command: npm run dev
+    ports:
+      - "3000:3000"
+    environment:
+      PORT: 3000
+      DATABASE_URL: mysql://root:password@db:3306/db
+    depends_on:
+      - db
+
+  db:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: db
+    volumes:
+      - db-data:/var/lib/mysql
+
+volumes:
+  db-data: {}
