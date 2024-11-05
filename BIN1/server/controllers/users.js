@@ -1,38 +1,38 @@
-const users = [];
+const User = require("../models/user");
 
 module.exports = {
-  getAll: (req, res, next) => {
-    res.json(users);
+  getAll: async (req, res, next) => {
+    res.json(await User.findAll());
   },
-  create: (req, res, next) => {
-    const user = req.body;
-    user.id = Date.now();
-    users.push(user);
-    res.status(201).json(user);
+  create: async (req, res, next) => {
+    res.status(201).json(await User.create(req.body));
   },
-  getOne: (req, res, next) => {
-    const user = users.find((user) => user.id === parseInt(req.params.id));
+  getOne: async (req, res, next) => {
+    const user = await User.findByPk(parseInt(req.params.id));
     if (user) {
       res.json(user);
     } else {
       res.sendStatus(404);
     }
   },
-  update: (req, res, next) => {
-    const user = users.find((user) => user.id === parseInt(req.params.id));
-    if (!user) return res.sendStatus(404);
-    Object.assign(user, req.body);
-    res.json(user);
+  update: async (req, res, next) => {
+    const nbUpdated = await User.update(req.body, {
+      where: {
+        id: parseInt(req.params.id),
+      },
+      //returning: true
+    });
+    if (!nbUpdated) return res.sendStatus(404);
+
+    res.json(await User.findByPk(parseInt(req.params.id)));
   },
-  delete: (req, res, next) => {
-    const userIndex = users.findIndex(
-      (user) => user.id === parseInt(req.params.id)
-    );
-    if (userIndex !== -1) {
-      users.splice(userIndex, 1);
-      res.sendStatus(204);
-    } else {
-      res.sendStatus(404);
-    }
+  delete: async (req, res, next) => {
+    const nbDeleted = await User.destroy({
+      where: {
+        id: parseInt(req.params.id),
+      },
+    });
+
+    res.sendStatus(nbDeleted ? 204 : 404);
   },
 };

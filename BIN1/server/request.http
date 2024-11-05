@@ -8,14 +8,14 @@ Content-Type: application/json
 {
   "name": "John Doe",
   "email": "j@d.com",
-  "password": "123456"
+  "password": "12Az!3456"
 }
 
 ### GET a user
-GET http://localhost:3000/users/1727361340951
+GET http://localhost:3000/users/1
 
 ### PATCH a user
-PATCH http://localhost:3000/users/1727361774897
+PATCH http://localhost:3000/users/1
 Content-Type: application/json
 
 {
@@ -23,4 +23,4 @@ Content-Type: application/json
 }
 
 ### DELETE a user
-DELETE http://localhost:3000/users/1727361340951
+DELETE http://localhost:3000/users/1
