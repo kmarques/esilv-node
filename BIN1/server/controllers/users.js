@@ -27,6 +27,8 @@ module.exports = {
     res.json(await User.findByPk(parseInt(req.params.id)));
   },
   delete: async (req, res, next) => {
+    if (req.user.id !== parseInt(req.params.id)) return res.sendStatus(403);
+
     const nbDeleted = await User.destroy({
       where: {
         id: parseInt(req.params.id),

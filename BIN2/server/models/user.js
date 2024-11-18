@@ -1,4 +1,5 @@
 const { Model, DataTypes } = require("sequelize");
+const bcrypt = require("bcryptjs");
 const connection = require("./db");
 
 class User extends Model {}
@@ -22,7 +23,7 @@ User.init(
     password: {
       type: DataTypes.STRING,
       validate: {
-        is: /^.{8,32}$/,
+        //is: /^.{8,32}$/,
       },
     },
     birthday: {
@@ -31,6 +32,10 @@ User.init(
         isDate: true,
         //isBefore: new Date(new Date() - 1000 * 60 * 60 * 24 * 365 * 18),
       },
+    },
+    role: {
+      type: DataTypes.ENUM("USER", "ADMIN"),
+      defaultValue: "USER",
     },
     cguActivated: {
       type: DataTypes.BOOLEAN,
@@ -41,5 +46,14 @@ User.init(
     sequelize: connection,
   }
 );
+
+User.addHook("beforeCreate", async (user) => {
+  user.password = await bcrypt.hash(user.password, await bcrypt.genSalt());
+});
+
+User.addHook("beforeUpdate", async (user, { fields }) => {
+  if (fields.includes("password"))
+    user.password = await bcrypt.hash(user.password, await bcrypt.genSalt());
+});
 
 module.exports = User;

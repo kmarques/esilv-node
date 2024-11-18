@@ -10,6 +10,7 @@ services:
     environment:
       PORT: 3000
       DATABASE_URL: mysql://root:password@db:3306/db
+      JWT_SECRET: secret
     depends_on:
       - db
 

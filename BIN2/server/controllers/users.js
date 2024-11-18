@@ -18,6 +18,7 @@ exports.patch = async (req, res, next) => {
       where: {
         id: parseInt(req.params.id),
       },
+      individualHooks: true,
     });
     if (nbUpdate === 0) {
       return res.sendStatus(404);
@@ -30,6 +31,8 @@ exports.patch = async (req, res, next) => {
 };
 
 exports.delete = async (req, res, next) => {
+  if (req.user.id !== parseInt(req.params.id)) return res.sendStatus(403);
+
   const nbDeleted = await User.destroy({
     where: {
       id: parseInt(req.params.id),

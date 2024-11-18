@@ -1,5 +1,6 @@
 ### GET users
 GET http://localhost:3000/users
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNzMwODI2NTU5fQ.U4b3KbZVxUx5YCvH5otB6ILYYdimspDHptHRzVnPJlQ
 
 ### POST users
 POST http://localhost:3000/users
@@ -23,4 +24,14 @@ Content-Type: application/json
 }
 
 ### DELETE a user
-DELETE http://localhost:3000/users/1
+DELETE http://localhost:3000/users/2
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNzMwODI2NTU5fQ.U4b3KbZVxUx5YCvH5otB6ILYYdimspDHptHRzVnPJlQ
+
+###
+POST http://localhost:3000/login
+Content-Type: application/json
+
+{
+  "email": "j@d.com",
+  "password": "12Az!3456"
+}

@@ -10,6 +10,7 @@ app.get("/", (request, response, next) => {
 });
 
 app.use(userRouter);
+app.use(require("./routes/security"));
 
 app.listen(process.env.PORT, () =>
   console.log("Server listening on port " + process.env.PORT)
