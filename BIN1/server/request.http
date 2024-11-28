@@ -1,6 +1,6 @@
 ### GET users
 GET http://localhost:3000/users
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNzMwODI2NTU5fQ.U4b3KbZVxUx5YCvH5otB6ILYYdimspDHptHRzVnPJlQ
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNzMxOTUwNjkwfQ.jrf2Kdn_v4EgvXryThS4ebrH93joOIIMW55GieyTmFY
 
 ### POST users
 POST http://localhost:3000/users
@@ -8,8 +8,9 @@ Content-Type: application/json
 
 {
   "name": "John Doe",
-  "email": "j@d.com",
-  "password": "12Az!3456"
+  "email": "j@dd.com",
+  "password": "12Az!3456",
+  "role": "ROLE_ADMIN"
 }
 
 ### GET a user
@@ -18,9 +19,10 @@ GET http://localhost:3000/users/1
 ### PATCH a user
 PATCH http://localhost:3000/users/1
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNzMxOTUwNjkwfQ.jrf2Kdn_v4EgvXryThS4ebrH93joOIIMW55GieyTmFY
 
 {
-  "name": "Jane Doe"
+  "name": "ROLE_ADMIN"
 }
 
 ### DELETE a user
@@ -33,5 +35,28 @@ Content-Type: application/json
 
 {
   "email": "j@d.com",
-  "password": "12Az!3456"
+  "password": "$2a$10$Hw7k9DxzMM0PTQ77Zjy4g.XYBANBxwaQZ3.D2KwyqJTCtKua4MUru"
 }
+
+### GET animals
+GET http://localhost:3000/animals
+###
+POST http://localhost:3000/animals
+Content-Type: application/json
+
+{
+  "name": "Bobby",
+  "race": "chien",
+  "birthday": "2018-01-01"
+}
+###
+PATCH http://localhost:3000/animals/1
+Content-Type: application/json
+
+{
+  "race": "chat"
+}
+###
+GET http://localhost:3000/animals/1
+###
+DELETE http://localhost:3000/animals/1

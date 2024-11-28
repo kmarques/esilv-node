@@ -2,6 +2,7 @@ const User = require("../models/user");
 
 module.exports = {
   getAll: async (req, res, next) => {
+    if (req.user.role !== "ROLE_ADMIN") return res.sendStatus(403);
     res.json(await User.findAll());
   },
   create: async (req, res, next) => {
@@ -16,10 +17,16 @@ module.exports = {
     }
   },
   update: async (req, res, next) => {
+    /**
+     * const user = await User.findByPk(req.params.id);
+     * user.password = 'toto';
+     * await user.save()
+     */
     const nbUpdated = await User.update(req.body, {
       where: {
         id: parseInt(req.params.id),
       },
+      individualHooks: true,
       //returning: true
     });
     if (!nbUpdated) return res.sendStatus(404);

@@ -1,6 +1,7 @@
 const { Router } = require("express");
 const User = require("../models/user");
 const jwt = require("jsonwebtoken");
+const brcrypt = require("bcryptjs");
 
 const router = new Router();
 
@@ -13,7 +14,7 @@ router.post("/login", async (req, res, next) => {
   });
 
   if (!user) return res.sendStatus(401);
-  if (user.password !== password) {
+  if (!(await brcrypt.compare(password, user.password))) {
     return res.sendStatus(401);
   }
 

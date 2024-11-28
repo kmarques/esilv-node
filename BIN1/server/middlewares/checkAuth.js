@@ -14,7 +14,7 @@ module.exports = async (req, res, next) => {
     );
     req.user = await User.findByPk(payload.id);
     if (!req.user) return res.sendStatus(401);
-    if (!req.user.activated) return res.sendStatus(403);
+    if (!req.user.activated) return res.sendStatus(401);
     next();
   } catch (e) {
     return res.sendStatus(401);
